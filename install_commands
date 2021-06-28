@@ -1,0 +1,36 @@
+#Root password needed for ssh
+passwd
+
+#IP address for ssh
+ip address
+
+#Verfiy Boot - if error then grub
+ls /sys/firmware/efi/efivars
+
+#test connection
+ping google.com
+
+#if ping fails - since this hasn't yet will complete when it does
+
+#update system clock
+timedatectl set-ntp true
+
+#partition disk
+cfdisk
+    -select dos
+    -set up two primary partitions
+        1 will be root and make bootable
+        2 will be the swap
+    -write
+    -exit
+    
+#list block and verify partition id
+lsblk
+
+#format partitions
+mkfs.ext4 /dev/root_partition
+mkswap /dev/swap_partition
+
+#mount 
+mount /dev/root_partition /mnt
+swapon /dev/swap_partition
