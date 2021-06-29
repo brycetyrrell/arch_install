@@ -1,0 +1,14 @@
+#AUR
+pacman -S yay
+
+#WM
+pacman -S i3-wm or i3-gaps
+
+#image viewer
+pacman -S feh
+
+#text editor 
+pacman -S atom 
+
+#terminal
+pacman -S alacritty 
