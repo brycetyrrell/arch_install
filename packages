@@ -16,7 +16,7 @@ pacman -S alacritty
 #filemanager 
 pacman -S nemo
 
-#i3 bar
+#i3 bar - bumblebee
 git clone https://aur.archlinux.org/bumblebee-status.git
 cd bumblebee-status
 makepkg -sicr
