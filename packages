@@ -11,4 +11,20 @@ pacman -S feh
 pacman -S atom 
 
 #terminal
-pacman -S alacritty 
+pacman -S alacritty
+
+#filemanager 
+pacman -S nemo
+
+#i3 bar
+git clone https://aur.archlinux.org/bumblebee-status.git
+cd bumblebee-status
+makepkg -sicr
+
+#bumblebee config entry 
+bar {
+	status_command <path to bumblebee-status/bumblebee-status> \
+		-m <list of modules> \
+		-p <list of module parameters> \
+		-t <theme>
+}
