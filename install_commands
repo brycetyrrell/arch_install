@@ -34,3 +34,84 @@ mkswap /dev/swap_partition
 #mount 
 mount /dev/root_partition /mnt
 swapon /dev/swap_partition
+
+#install packages
+pacstrap /mnt base linux linux-firmware nano networkmanager
+
+#generate fstab
+genfstab -U /mnt >> /mnt/etc/fstab
+
+#change root
+arch-chroot /mnt
+
+#set time zone
+ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
+
+#generate /etc/adjtime
+hwclock --systohc
+
+#localization 
+nano /etc/locale.gen
+    -uncomment en_US.UTF-8 UTF-8
+
+locale-gen
+
+echo LANG=en_US.UTF-8 > /etc/locale.conf
+
+#create host name 
+nano /etc/hostname 
+    -enter hostname
+
+nano /etc/hosts
+-place in file
+127.0.0.1	localhost
+::1		localhost
+127.0.1.1	myhostname.localdomain	myhostname
+
+#Initramfs
+mkinitcpio -P
+
+#change root password
+passwd
+
+#Grub
+pacman -S grub
+grub-install /dev/sdX
+grub-mkconfig -o /boot/grub/grub.cfg
+
+#enable NetworkManager
+systemctl enable NetworkManager
+
+#shutdown to remove install media
+exit
+umount -a
+shutdown now 
+
+#sync package database
+pacman -Sy
+
+#install bash-completion
+pacman -S bash-completion
+
+#install sudo
+pacman -S sudo
+
+#create user
+useradd -m -g users -G audio,video,network,wheel,storage -s /bin/bash <username>
+passwd <username>
+
+#sudo group add
+EDITOR=nano visudo
+   -uncomment %wheel ALL=(ALL) All
+
+#exit and log into user
+ 
+#install xorg
+sudo pacman -S xorg-server xorg-apps xorg-init xterm
+
+#lightdm
+sudo pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+sudo systemctl enable lightdm.service
+
+#install i3
+sudo pacman -S i3-gaps i3status i3lock
