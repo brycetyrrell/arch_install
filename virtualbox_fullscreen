@@ -1,0 +1,5 @@
+#disable Vbox overlay bar - disable Show in Full-screen/Seamless option in Guest Settings > User Interface > Mini ToolBar 
+
+pacman -S virtualbox-guest-utils
+
+systemctl enable vboxservice.service
