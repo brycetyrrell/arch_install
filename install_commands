@@ -36,7 +36,7 @@ mount /dev/root_partition /mnt
 swapon /dev/swap_partition
 
 #install packages
-pacstrap /mnt base linux linux-firmware nano networkmanager
+pacstrap /mnt base linux linux-firmware base-devel nano networkmanager
 
 #generate fstab
 genfstab -U /mnt >> /mnt/etc/fstab
