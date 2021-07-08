@@ -63,10 +63,10 @@ nano /etc/hostname
     -enter hostname
 
 nano /etc/hosts
--place in file
-127.0.0.1	localhost
-::1		localhost
-127.0.1.1	myhostname.localdomain	myhostname
+    -place in file
+     127.0.0.1	localhost
+     ::1		localhost
+     127.0.1.1	myhostname.localdomain	myhostname
 
 #Initramfs
 mkinitcpio -P
