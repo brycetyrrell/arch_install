@@ -110,8 +110,22 @@ EDITOR=nano visudo
 sudo pacman -S xorg-server xorg-apps xorg-init xterm
 
 #lightdm
-sudo pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
-sudo systemctl enable lightdm.service
+pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+systemctl enable lightdm.service
 
 #install i3
-sudo pacman -S i3-gaps i3status i3lock
+pacman -S i3-gaps i3status i3lock
+
+#install LTS and Zen Kernel for fall backs
+pacman -S linux-lts
+pacman -S linux-zen
+
+#adjust grup for aditional kernels
+nano /etc/default/grub
+    -ensure the following are in the grub file
+     GRUB_DISABLE_SUBMENU=y
+     GRUB_DEFAULT=saved
+     GRUB_SAVEDEFAULT=true
+
+grub-mkconfig -o /boot/grub/grub.cfg
+    
