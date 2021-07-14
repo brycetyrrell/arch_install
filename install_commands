@@ -107,7 +107,7 @@ EDITOR=nano visudo
 #exit and log into user
  
 #install xorg
-sudo pacman -S xorg-server xorg-apps xorg-init xterm
+sudo pacman -S xorg-server xorg-apps xorg-xinit xterm
 
 #lightdm
 pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
